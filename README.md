@@ -50,7 +50,7 @@ public class SomeIrrelevantClass {
     // other random stuffs for this function 
   }
 }
-
+```
 ---
 Now, you can set up the actual tasks to execute when a certain Event is invoked. (Yay)
 
