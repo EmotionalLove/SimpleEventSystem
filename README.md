@@ -21,7 +21,7 @@ Great, now you need a listener. Make a class that implements `SimpleListener`, a
 
 ```Java
 public class MyCuteClass implements SimpleListener {
-  private SimpleEventManager manager = new SimpleEventManager();
+  public SimpleEventManager manager = new SimpleEventManager();
   public static MyCuteClass INSTANCE;
   
   public void start() throws ListenerRegistrationException {
@@ -42,8 +42,8 @@ public class SomeIrrelevantClass {
     // whatever this function does...
     TestEvent /*or whatever your event is called*/ ev = new TestEvent();
     MoreComplexEvent mev = new MoreComplexEvent(irrelevanceLevel /* You can customise your event's constructor as you'd like */);
-    MyCuteClass.INSTANCE.invokeEvent(ev);
-    MyCuteClass.INSTANCE.invokeEvent(mev);
+    MyCuteClass.INSTANCE.manager.invokeEvent(ev);
+    MyCuteClass.INSTANCE.manager.invokeEvent(mev);
     if (mev.isCancelled()){
       return;
     }
