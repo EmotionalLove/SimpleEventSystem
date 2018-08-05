@@ -67,7 +67,7 @@ public class MyCuteClass implements SimpleListener {
   public void onSomeEvent(TestEvent e){
     // do stuff
   }
-  @SimpleEventManager
+  @SimpleEventHandler
   public void onSomeMoreComplexEvent(MoreComplexEvent e){
     if (/* some condition */){
       e.setCancelled(true);
