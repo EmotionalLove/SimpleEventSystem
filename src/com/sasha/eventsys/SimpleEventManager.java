@@ -37,7 +37,9 @@ public class SimpleEventManager {
         registeredMethods.forEach(method -> {
             if (method.getParameterTypes()[0] == e.getClass()){
                 try {
+                    method.setAccessible(true);
                     method.invoke(method.getDeclaringClass().newInstance(), e);
+                    method.setAccessible(false);
                 }catch (Exception ex){
                     System.out.println("FATAL EXCEPTION DURING " + e.getClass().getName() + "'s EXECUTION");
                     ex.printStackTrace();
