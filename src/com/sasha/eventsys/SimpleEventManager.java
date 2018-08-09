@@ -78,7 +78,7 @@ public class SimpleEventManager {
                     method.invoke(clasz.newInstance(), e);
                 } catch (Exception ex) {
                     System.out.println("FATAL EXCEPTION DURING " + e.getClass().getName() + "'s EXECUTION");
-                    ex.printStackTrace();
+                    ex.getCause().printStackTrace();
                 }
             }
         }
