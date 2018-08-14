@@ -18,7 +18,7 @@ public class SimpleEventManager {
 
     private HashMap<Method, Object> registeredMethods = new HashMap<>();
 
-    public void registerListener(@NotNull SimpleListener listener, Object instance) {
+    public void registerListener(@NotNull SimpleListener listener) {
         Method[] methods = listener.getClass().getMethods();
         for (Method method : methods){
             if (method.getAnnotations() == null || method.getAnnotations().length == 0){
@@ -37,7 +37,7 @@ public class SimpleEventManager {
             if (registeredMethods.containsKey(method)){
                 return;
             }
-            registeredMethods.put(method, instance);
+            registeredMethods.put(method, (Object)listener);
         }
     }
     public void deregisterListener(@NotNull SimpleListener listener){
@@ -79,8 +79,13 @@ public class SimpleEventManager {
                     }
                     set.getKey().invoke(set.getValue(), e);
                 } catch (Exception ex) {
-                    System.out.println("FATAL EXCEPTION DURING " + e.getClass().getName() + "'s EXECUTION");
-                    ex.getCause().printStackTrace();
+                    try {
+                        System.out.println("FATAL EXCEPTION DURING " + e.getClass().getName() + "'s EXECUTION");
+                        ex.getCause().printStackTrace();
+                    } catch (Exception exxx){
+                        System.out.println("A SEVERE EVENT MANAGER EXCEPTION OCCURED.");
+                        exxx.printStackTrace();
+                    }
                 }
             }
         }
