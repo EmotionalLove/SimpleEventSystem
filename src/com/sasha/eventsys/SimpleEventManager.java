@@ -19,7 +19,7 @@ public class SimpleEventManager {
     private HashMap<Method, Object> registeredMethods = new HashMap<>();
 
     public void registerListener(@NotNull SimpleListener listener) {
-        Method[] methods = listener.getClass().getMethods();
+        Method[] methods = listener.getClass().getDeclaredMethods();
         for (Method method : methods){
             if (method.getAnnotations() == null || method.getAnnotations().length == 0){
                 continue;
@@ -80,7 +80,7 @@ public class SimpleEventManager {
                     set.getKey().invoke(set.getValue(), e);
                 } catch (Exception ex) {
                     try {
-                        System.out.println("FATAL EXCEPTION DURING " + e.getClass().getName() + "'s EXECUTION");
+                        System.out.println("A fatal uncaught exception occurred in " + e.getClass().getName() + "." + set.getKey().getName());
                         ex.getCause().printStackTrace();
                     } catch (Exception exxx){
                         System.out.println("A SEVERE EVENT MANAGER EXCEPTION OCCURED.");
