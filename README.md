@@ -1,3 +1,5 @@
+// todo make this thing not suck. i wrote this in a rush lol
+
 # SimpleEventSystem
 An extremely simple annotated event system for Java. Simply add as a library to your project, no dependencies needed.
 
